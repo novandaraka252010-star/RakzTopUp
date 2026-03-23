@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAKZ TOPUP | FREE FIRE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #1c1e29; color: #ffffff; }
+        .nav-rakz { background-color: #2b2f40; border-bottom: 4px solid #f39c12; position: sticky; top: 0; z-index: 1000; }
+        .container-main { max-width: 480px; margin: 0 auto; padding: 20px; }
+        .card-rakz { background-color: #2b2f40; border-radius: 20px; padding: 24px; margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.1); }
+        .step-id { background: #f39c12; color: #1c1e29; width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 900; margin-right: 14px; }
+        .input-rakz { background-color: #1c1e29; border: 2px solid #3d445e; color: white; width: 100%; padding: 18px; border-radius: 14px; margin-top: 15px; font-weight: 700; }
+        .grid-nominal { display: grid; grid-template-cols: repeat(2, 1fr); gap: 12px; margin-top: 15px; }
+        .item-nominal { background-color: #3d445e; border: 2px solid transparent; border-radius: 16px; padding: 15px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .item-nominal.active { border-color: #f39c12; background-color: rgba(243, 156, 18, 0.15); }
+        .payment-row { background-color: #3d445e; border: 2px solid #2ecc71; padding: 18px; border-radius: 16px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .btn-gas { background: linear-gradient(90deg, #f39c12, #e67e22); color: #1c1e29; width: 100%; padding: 20px; border-radius: 18px; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; margin-top: 10px; }
+        .cs-floating { position: fixed; bottom: 30px; right: 25px; z-index: 9999; display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+        .cs-circle { width: 65px; height: 65px; background-color: #f39c12; color: #1c1e29; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 900; border: 4px solid #2b2f40; }
+        .cs-label { background-color: #2ecc71; color: #1c1e29; padding: 6px 15px; border-radius: 20px; font-weight: 900; font-size: 10px; margin-top: 8px; text-transform: uppercase; white-space: nowrap; }
+    </style>
+</head>
+<body class="pb-32">
+
+    <nav class="nav-rakz p-4 text-center">
+        <h1 class="text-xl font-black italic uppercase">RAKZ<span class="text-[#f39c12]">TOPUP</span></h1>
+    </nav>
+
+    <div class="container-main">
+        <div class="mb-6 card-rakz !p-0 overflow-hidden border-2 border-[#3d445e]">
+            <img src="https://telegra.ph/file/a01d67417531475701469.jpg" class="w-full h-52 object-cover">
+            <div class="p-5">
+                <h2 class="text-2xl font-black uppercase">FREE FIRE</h2>
+                <p class="text-gray-400 text-xs font-bold uppercase tracking-widest">Layanan Top-Up Terjamin Aman</p>
+            </div>
+        </div>
+
+        <div class="card-rakz">
+            <div class="flex items-center font-black text-lg"><span class="step-id">1</span> LOGIN</div>
+            <input type="number" id="playerID" class="input-rakz" placeholder="Isi Player ID disini">
+        </div>
+
+        <div class="card-rakz">
+            <div class="flex items-center font-black text-lg"><span class="step-id">2</span> NOMINAL TOP-UP</div>
+            <div class="grid-nominal">
+                <div class="item-nominal" onclick="selectItem(this, '50 Diamonds', 8000)">
+                    <p class="font-black text-sm">💎 50</p>
+                    <p class="text-[10px] text-gray-400">Rp 8.000</p>
+                </div>
+                <div class="item-nominal" onclick="selectItem(this, '140 Diamonds', 22000)">
+                    <p class="font-black text-sm">💎 140</p>
+                    <p class="text-[10px] text-gray-400">Rp 22.000</p>
+                </div>
+                <div class="item-nominal" onclick="selectItem(this, '355 Diamonds', 55000)">
+                    <p class="font-black text-sm">💎 355</p>
+                    <p class="text-[10px] text-gray-400">Rp 55.000</p>
+                </div>
+                <div class="item-nominal" onclick="selectItem(this, '720 Diamonds', 105000)">
+                    <p class="font-black text-sm">💎 720</p>
+                    <p class="text-[10px] text-gray-400">Rp 105.000</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-rakz">
+            <div class="flex items-center font-black text-lg"><span class="step-id">3</span> METODE PEMBAYARAN</div>
+            <div class="payment-row">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-qrcode text-[#f39c12] text-xl"></i>
+                    <span class="font-black text-sm">QRIS</span>
+                </div>
+                <span class="text-[9px] bg-red-600 text-white px-2 py-1 rounded-full font-black animate-pulse">HOT</span>
+            </div>
+        </div>
+
+        <button class="btn-gas" onclick="kirimOrder()">Beli Sekarang</button>
+    </div>
+
+    <a href="https://api.whatsapp.com/send?phone=62881011387969" class="cs-floating">
+        <div class="cs-circle">@</div>
+        <div class="cs-label">Hubungi Rakz</div>
+    </a>
+
+    <script>
+        let selectedOrder = { diamond: "", price: 0 };
+
+        function selectItem(el, name, price) {
+            document.querySelectorAll('.item-nominal').forEach(i => i.classList.remove('active'));
+            el.classList.add('active');
+            selectedOrder.diamond = name;
+            selectedOrder.price = price;
+        }
+
+        function kirimOrder() {
+            const id = document.getElementById('playerID').value;
+            if(!id) return alert("Masukkan Player ID dulu bosku!");
+            if(!selectedOrder.diamond) return alert("Pilih nominal dulu!");
+
+            const waUrl = "https://api.whatsapp.com/send";
+            const phone = "62881011387969";
+            const text = encodeURIComponent(
+                `HALO RAKZ TOPUP! ⚡\n` +
+                `PESANAN FREE FIRE\n` +
+                `----------------------------\n` +
+                `🆔 PLAYER ID : ${id}\n` +
+                `💎 NOMINAL   : ${selectedOrder.diamond}\n` +
+                `💳 METODE    : QRIS\n` +
+                `💰 TOTAL     : Rp ${selectedOrder.price.toLocaleString()}\n` +
+                `----------------------------\n` +
+                `Gas proses langsung bosku!`
+            );
+
+            // Gunakan window.open atau href untuk menghindari eror net::ERR_UNKNOWN_URL_SCHEME
+            window.location.href = `${waUrl}?phone=${phone}&text=${text}`;
+        }
+    </script>
+</body>
+  </html>
